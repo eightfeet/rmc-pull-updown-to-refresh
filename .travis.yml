@@ -1,0 +1,21 @@
+sudo: false
+language: node_js
+node_js:
+  - "8"
+cache:
+  yarn: true
+  directories:
+    - "node_modules"
+before_script:
+script:
+  - yarn lint
+  - yarn test -- --ci
+after_success: yarn website
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  local_dir: examples/dist
+  on:
+    branch: master
+    node: "8"

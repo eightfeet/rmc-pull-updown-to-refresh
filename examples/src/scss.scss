@@ -1,0 +1,9 @@
+.example {
+    width: 375px;
+    height: 667px;
+}
+
+:global(body) {
+    padding: 0;
+    margin: 0;
+}

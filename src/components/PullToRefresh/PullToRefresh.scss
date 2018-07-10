@@ -1,0 +1,102 @@
+.rootbox {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.drogbox {
+	width: 100%;
+	position: absolute;
+	transition-duration: 0s;
+	left: 0;
+}
+
+.listwrap {
+  overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	position: relative;
+}
+.listcontent {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.drogbar {
+	background-color: #eee;
+	position: relative;
+}
+
+.loading {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+}
+
+.top {
+	bottom: 0;
+}
+
+.buttom {
+	top: 0;
+}
+
+.loadingline {
+	width: 25%;
+	min-width: 100px;
+	height: 20px;
+	margin: 15px auto;
+	text-align: center;
+	color: #888;
+	font-size: 10px;
+	line-height: 20px;
+	position: relative;
+	span{
+		position: absolute;
+		display: block;
+		left: 0;
+		top: 0;
+		width: 20px;
+		height: 20px;
+		background-repeat: no-repeat;
+		background-position: 0 0;
+		background-size: contain;
+	}
+}
+
+.arrowico {
+	text-align: center;
+	font-size: 14px;
+	line-height: 14px;
+}
+
+.loadingico {
+	background-image: url(./loading.svg);
+}
+
+.error, .loadingtext {
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	line-height: 53px;
+	text-align: center;
+	color: #888;
+	font-size: 10px;
+	position: absolute;
+	top: 0;
+}
+
+.arrowbottom {
+	background-image: url(./arrow.svg);
+}
+.arrowup {
+	background-image: url(./arrow.svg);
+	transform: rotate(180deg)
+}
+.debug {
+	width: 100%;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.4);
+	color: red;
+	position: absolute;
+}
