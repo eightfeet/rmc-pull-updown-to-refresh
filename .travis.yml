@@ -14,7 +14,7 @@ after_success: yarn website
 deploy:
   provider: pages
   skip_cleanup: true
-  github_token: $GH_TOKEN
+  github_token: $token
   local_dir: examples/dist
   on:
     branch: master
