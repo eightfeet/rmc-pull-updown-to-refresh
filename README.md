@@ -1,4 +1,4 @@
-##  rmc-pull-updown-to-refresh  
+##  rmc-pull-updown-to-refresh  [![Build Status](https://travis-ci.org/eightfeet/rmc-pull-updown-to-refresh.svg?branch=master)](https://travis-ci.org/eightfeet/rmc-pull-updown-to-refresh)
 An accessible and easy component for ReactJS
 ### 简单易用的react拖拉翻页组件
 
