@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import PullToRefresh from './../PullToRefresh';
 import s from './Example.scss';
+import rocket from './../PullToRefresh/rocket.png';
+import loadheart from './../PullToRefresh/loadingheart.svg';
 
 const defaultPage = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 let page = 1;
@@ -90,6 +92,8 @@ export default class Example extends Component {
                 onPullUp={this.onPullUp}
                 loadBackground="#eee"
                 loadTextColor="#999"
+                loadIcon={loadheart}
+                pullIcon={rocket}
               >
                 <div>
                   {this.state.listleft.map((item, index) => (

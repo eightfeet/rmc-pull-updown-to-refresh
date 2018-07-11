@@ -138,6 +138,10 @@ export default class PullToRefresh extends Component {
     this.drogbox.removeEventListener('touchmove', this.onTouchMove);
     this.drogbox.removeEventListener('touchend', this.onTouchEnd);
     this.listwrap.removeEventListener('scroll', this.onScroll);
+    window.document.removeEventListener(
+      'DOMContentLoaded',
+      this.onAddTouchEventListener,
+    );
   };
 
   onTouchStart = event => {
@@ -190,16 +194,20 @@ export default class PullToRefresh extends Component {
     if (listwrap + scrollTop + 1 >= listcontent && this.props.disablePullUp) {
       return;
     }
-
     // top
-    if (this.listwrap.scrollTop === 0 && this.endPos - this.startPos > 0) {
+    if (
+      this.listwrap.scrollTop === 0 &&
+      this.endPos - this.startPos > 0 &&
+      event.cancelable
+    ) {
       event.preventDefault();
     }
     // buttom
     if (
       this.listwrap.scrollTop + this.listwrap.clientHeight ===
         this.listwrap.scrollHeight &&
-      this.endPos - this.startPos < 0
+      this.endPos - this.startPos < 0 &&
+      event.cancelable
     ) {
       event.preventDefault();
     }
@@ -256,7 +264,6 @@ export default class PullToRefresh extends Component {
     if (!this.isTouch) {
       return true;
     }
-
     this.isStatusLoading = true;
 
     const distence = Math.abs(
@@ -313,6 +320,9 @@ export default class PullToRefresh extends Component {
         if (direction === 1) {
           return this.props.onPullDown();
         }
+        return false;
+      })
+      .then(() => {
         this.setState(
           {
             transfrom: this.originTransfrom,
@@ -426,8 +436,18 @@ export default class PullToRefresh extends Component {
               </div>
             )}
             {errMsg && (
-              <div className={`${s.top} ${s.loading}`}>
-                <div className={s.error}>{errMsg}</div>
+              <div
+                className={`${s.top} 
+                ${s.loading}`}
+              >
+                <div
+                  className={s.error}
+                  style={{
+                    color: this.props.loadTextColor,
+                  }}
+                >
+                  {errMsg}
+                </div>
               </div>
             )}
           </div>
