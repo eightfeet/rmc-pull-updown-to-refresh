@@ -5,7 +5,7 @@ An accessible and easy component for ReactJS
 ##  Installing
 npm  
 ```sh
-    npm i rmc-pull-updown-to-refresh -S
+npm i rmc-pull-updown-to-refresh -S
 ```
 yarn
 ```sh
