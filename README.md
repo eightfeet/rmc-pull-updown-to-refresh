@@ -3,7 +3,14 @@ An accessible and easy component for ReactJS
 ### 简单易用的react拖拉翻页组件
 
 ##  Installing
-set
+npm  
+```sh
+    npm i rmc-pull-updown-to-refresh -S
+```
+yarn
+```sh
+yarn add rmc-pull-updown-to-refresh
+```
 ##  Basic Example
 
 ##  API
