@@ -1,9 +1,15 @@
 .example {
-    width: 375px;
-    height: 667px;
+    width: 100%;
+    height: 100%;
 }
-
-:global(body) {
+:global(html), :global(body) {
+    position: relative;
     padding: 0;
     margin: 0;
+    height: 100%;
+}
+
+:global(#example) {
+    width: 100%;
+    height: 100%;
 }

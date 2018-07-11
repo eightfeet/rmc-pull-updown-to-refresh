@@ -24,7 +24,7 @@ export default class PullToRefresh extends Component {
     onPullUp: PropTypes.func.isRequired,
     onPullDown: PropTypes.func,
     className: PropTypes.string,
-    children: PropTypes.node.isRequired,
+    children: PropTypes.node,
     loadBackground: PropTypes.string,
     loadTextColor: PropTypes.string,
     loadIcon: PropTypes.string,
@@ -426,8 +426,18 @@ export default class PullToRefresh extends Component {
               </div>
             )}
             {errMsg && (
-              <div className={`${s.top} ${s.loading}`}>
-                <div className={s.error}>{errMsg}</div>
+              <div
+                className={`${s.top} 
+                ${s.loading}`}
+              >
+                <div
+                  className={s.error}
+                  style={{
+                    color: this.props.loadTextColor,
+                  }}
+                >
+                  {errMsg}
+                </div>
               </div>
             )}
           </div>

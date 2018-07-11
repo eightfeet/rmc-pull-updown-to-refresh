@@ -5,18 +5,40 @@
 	position: relative;
 }
 
+/***
+清除浮动
+clearfix
+***/
+.clearfix:before,.clearfix:after{
+    content:"";
+    display:table;
+}
+.clearfix:after{clear:both;}
+
+.left {
+	height: 100%;
+	width: 50%;
+	position: relative;
+	float: left;
+}
+
+.pullbox {
+	height: 100%;
+	position: relative;
+}
+
 .item {
 	height: 3rem;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid #ddd;
 	color: #222;
 	line-height: 3rem;
 	text-align: center;
 }
 
 .bg_orange {
-	background-color: orange;
+	background-color: #ffc107;
 }
 
 .bg_green {
-	background-color: green;
+	background-color: #8bc34a;
 }

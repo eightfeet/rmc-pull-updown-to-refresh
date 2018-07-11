@@ -12,8 +12,10 @@ export default class Example extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: defaultPage,
-      listleft: defaultPage,
+      count: 0,
+      isOpen: false,
+      list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      listleft: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     };
     this.time1 = null;
     this.time2 = null;
@@ -74,27 +76,57 @@ export default class Example extends Component {
 
   render() {
     return (
-      <div className={s.rootbox}>
-        <PullToRefresh
-          className="bg-gray-lightest"
-          onPullDown={this.onPullDown}
-          disablePullUp={false}
-          disablePullDown={false}
-          pullDownText="左下拉更新"
-          pullUpText="左上拉更新"
-          onPullUp={this.onPullUp}
-        >
-          <div>
-            {this.state.listleft.map((item, index) => (
-              <div
-                className={`${s.item} ${s.bg_orange}`}
-                key={`${item}${index.toString()}`}
+      <div className={`${s.rootbox}`}>
+        <div className={s.clearfix} style={{height: '100%'}}>
+          <div className={s.left}>
+            <div className={s.pullbox}>
+              <PullToRefresh
+                className={s.bg_orange}
+                onPullDown={this.onPullDown}
+                disablePullUp={false}
+                disablePullDown={false}
+                pullDownText="左下拉更新"
+                pullUpText="左上拉更新"
+                onPullUp={this.onPullUp}
+                loadBackground="#eee"
+                loadTextColor="#999"
               >
-                {item}
-              </div>
-            ))}
+                <div>
+                  {this.state.listleft.map((item, index) => (
+                    <div
+                      key={`left${index.toString()}`}
+                      className={s.item}
+                      onClick={this.onClickItem(item)}
+                    >
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </PullToRefresh>
+            </div>
           </div>
-        </PullToRefresh>
+          <div className={s.left}>
+            <PullToRefresh
+              onPullDown={this.onPullDownRight}
+              onPullUp={this.onPullUpRight}
+              disablePullUp={false}
+              disablePullDown={false}
+              className={s.bg_green}
+            >
+              <div>
+                {this.state.list.map((item, index) => (
+                  <div
+                    key={`right${index.toString()}`}
+                    className={s.item}
+                    onClick={this.onClickItem(item)}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </PullToRefresh>
+          </div>
+        </div>
       </div>
     );
   }
