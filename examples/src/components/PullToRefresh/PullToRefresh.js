@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { slope } from './helper';
 import s from './PullToRefresh.scss';
 import loading from './loading.svg';
 import arrow from './arrow.svg';
@@ -54,6 +55,8 @@ export default class PullToRefresh extends Component {
     this.offset = 0;
     this.startPos = 0;
     this.endPos = 0;
+    this.startXPos = 0;
+    this.endXPos = 0;
     this.originTransfrom = null;
     this.isTouch = false;
     this.isScroll = false;
@@ -168,6 +171,7 @@ export default class PullToRefresh extends Component {
 
     const e = event.changedTouches[0];
     this.startPos = e.screenY;
+    this.startXPos = e.screenX;
   };
 
   onTouchMove = event => {
@@ -194,6 +198,7 @@ export default class PullToRefresh extends Component {
     if (listwrap + scrollTop + 1 >= listcontent && this.props.disablePullUp) {
       return;
     }
+
     // top
     if (
       this.listwrap.scrollTop === 0 &&
@@ -214,6 +219,18 @@ export default class PullToRefresh extends Component {
 
     const e = event.changedTouches[0];
     this.endPos = e.screenY;
+    this.endXPos = e.screenX;
+
+    // x, y, angle 滑动轨迹与X轴角度小于等于60，纵向视滑动为无效
+    const rate = slope(
+      this.endXPos - this.startXPos,
+      this.endPos - this.startPos,
+      60,
+    );
+
+    if (rate < 1) {
+      return;
+    }
 
     this.distence = this.endPos - this.startPos;
 
