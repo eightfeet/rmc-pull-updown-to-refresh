@@ -38,7 +38,7 @@ yarn add rmc-pull-updown-to-refresh
                 rej('没有更多了！');
             }, 3000);
             });
-        ...
+        .......
         render () {
             return (
                 <div>
