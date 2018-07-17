@@ -66,6 +66,7 @@ export default class PullToRefresh extends Component {
     this.delaytimer = null;
     this.isStatusLoading = false;
     this.distence = 0;
+    this.initialDirection = null;
   }
 
   componentDidMount() {
@@ -172,6 +173,7 @@ export default class PullToRefresh extends Component {
     const e = event.changedTouches[0];
     this.startPos = e.screenY;
     this.startXPos = e.screenX;
+    this.initialDirection = null;
   };
 
   onTouchMove = event => {
@@ -234,6 +236,15 @@ export default class PullToRefresh extends Component {
 
     this.distence = this.endPos - this.startPos;
 
+    if (!this.initialDirection) {
+      if (this.distence > 10) {
+        this.initialDirection = 1;
+      }
+      if (this.distence < -10) {
+        this.initialDirection = -1;
+      }
+    }
+
     let dist =
       this.endPos - this.startPos < 100 ? 100 : this.endPos - this.startPos;
 
@@ -256,13 +267,18 @@ export default class PullToRefresh extends Component {
     const tranrotte =
       this.state.arrowRotate < 180 ? (this.state.arrowRotate += 8) : 180;
 
+    let loadingtext = null;
+    if (this.initialDirection === 1) {
+      loadingtext = this.props.pullDownText;
+    }
+    if (this.initialDirection === -1) {
+      loadingtext = this.props.pullUpText;
+    }
+
     this.setState({
       errMsg: null,
       transfrom: this.state.transfrom + this.offset,
-      loadingtext:
-        this.endPos > this.startPos
-          ? this.props.pullDownText
-          : this.props.pullUpText,
+      loadingtext,
       showArrow: true,
       showLoading: false,
       arrowRotate: tranrotte,
@@ -290,13 +306,11 @@ export default class PullToRefresh extends Component {
     const e = event.changedTouches[0];
     this.endPos = e.screenY;
     let transf = null;
-    let direction = null;
     if (distence > this.minDistance) {
-      if (this.startPos > this.endPos) {
-        direction = -1;
+      if (this.initialDirection === -1) {
         transf = this.originTransfrom - this.minDistance;
-      } else {
-        direction = 1;
+      }
+      if (this.initialDirection === 1) {
         transf = this.originTransfrom + this.minDistance;
       }
     } else {
@@ -315,7 +329,7 @@ export default class PullToRefresh extends Component {
         this.isTouch = false;
         this.offset = 0;
         this.step = 300;
-        this.handleAction(direction);
+        this.handleAction(this.initialDirection);
       },
     );
     return true;
