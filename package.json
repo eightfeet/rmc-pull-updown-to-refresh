@@ -1,6 +1,6 @@
 {
   "name": "rmc-pull-updown-to-refresh",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "react pull to refresh react component",
   "main": "lib/rmc-pull-updown-to-refresh.production.min.js",
   "scripts": {
