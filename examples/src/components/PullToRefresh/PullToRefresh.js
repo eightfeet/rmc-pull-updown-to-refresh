@@ -78,8 +78,8 @@ export default class PullToRefresh extends Component {
   }
 
   init = () => {
-    this.onAddTouchEventListener();
     setTimeout(() => {
+      this.onAddTouchEventListener();
       this.originTransfrom = this.rootbox.clientHeight * -1;
       this.setState({
         rootHeight: this.rootbox.clientHeight,
@@ -128,12 +128,10 @@ export default class PullToRefresh extends Component {
 
   // 不确定reactOnTouch 事件的兼容性
   onAddTouchEventListener = () => {
-    window.document.addEventListener('DOMContentLoaded', () => {
-      this.drogbox.addEventListener('touchstart', this.onTouchStart, false);
-      this.drogbox.addEventListener('touchmove', this.onTouchMove, false);
-      this.drogbox.addEventListener('touchend', this.onTouchEnd, false);
-      this.listwrap.addEventListener('scroll', this.onScroll, false);
-    });
+    this.drogbox.addEventListener('touchstart', this.onTouchStart, false);
+    this.drogbox.addEventListener('touchmove', this.onTouchMove, false);
+    this.drogbox.addEventListener('touchend', this.onTouchEnd, false);
+    this.listwrap.addEventListener('scroll', this.onScroll, false);
   };
 
   // 取消EventListener
@@ -142,10 +140,6 @@ export default class PullToRefresh extends Component {
     this.drogbox.removeEventListener('touchmove', this.onTouchMove);
     this.drogbox.removeEventListener('touchend', this.onTouchEnd);
     this.listwrap.removeEventListener('scroll', this.onScroll);
-    window.document.removeEventListener(
-      'DOMContentLoaded',
-      this.onAddTouchEventListener,
-    );
   };
 
   onTouchStart = event => {
