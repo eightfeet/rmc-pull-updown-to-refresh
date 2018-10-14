@@ -15,7 +15,7 @@ yarn add rmc-pull-updown-to-refresh
 
 ```js
     import React, { Component } from 'react';
-    import PullToRefresh from './../PullToRefresh';
+    import PullToRefresh from 'rmc-pull-updown-to-refresh';
 
     export default class YouComponet extends Component {
         onPullDown = () =>
