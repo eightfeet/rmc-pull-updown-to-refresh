@@ -1,6 +1,6 @@
 // import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import PullToRefresh from './../PullToRefresh';
+import PullToRefresh from '../../../../src/components/PullToRefresh';
 import s from './Example.scss';
 import rocket from './../PullToRefresh/rocket.png';
 import loadheart from './../PullToRefresh/loadingheart.svg';
@@ -111,10 +111,9 @@ export default class Example extends Component {
           </div>
           <div className={s.left}>
             <PullToRefresh
-              onPullDown={this.onPullDownRight}
               onPullUp={this.onPullUpRight}
               disablePullUp={false}
-              disablePullDown={false}
+              disablePullDown
               className={s.bg_green}
             >
               <div>

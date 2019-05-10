@@ -339,11 +339,11 @@ export default class PullToRefresh extends Component {
     }
     return Promise.resolve()
       .then(() => {
-        if (direction === -1) {
-          return this.props.onPullUp();
+        if (direction === -1 && !this.props.disablePullUp) {
+          return this.props.onPullUp && this.props.onPullUp();
         }
-        if (direction === 1) {
-          return this.props.onPullDown();
+        if (direction === 1 && !this.props.disablePullDown) {
+          return this.props.onPullDown && this.props.onPullDown();
         }
         return false;
       })
