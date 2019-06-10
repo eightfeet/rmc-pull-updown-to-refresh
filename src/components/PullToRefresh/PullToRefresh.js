@@ -187,14 +187,6 @@ export default class PullToRefresh extends Component {
     const listcontent = this.listcontent.offsetHeight;
     const { scrollTop } = this.listwrap;
 
-    if (this.listwrap.scrollTop === 0 && this.props.disablePullDown) {
-      return;
-    }
-
-    if (listwrap + scrollTop + 1 >= listcontent && this.props.disablePullUp) {
-      return;
-    }
-
     // top
     if (
       this.listwrap.scrollTop === 0 &&
@@ -237,6 +229,22 @@ export default class PullToRefresh extends Component {
       if (this.distence < -10) {
         this.initialDirection = -1;
       }
+    }
+
+    if (
+      this.initialDirection === 1 &&
+      this.listwrap.scrollTop === 0 &&
+      this.props.disablePullDown
+    ) {
+      return;
+    }
+
+    if (
+      this.initialDirection === -1 &&
+      listwrap + scrollTop + 1 >= listcontent &&
+      this.props.disablePullUp
+    ) {
+      return;
     }
 
     let dist =
