@@ -223,10 +223,10 @@ export default class PullToRefresh extends Component {
     this.distence = this.endPos - this.startPos;
 
     if (!this.initialDirection) {
-      if (this.distence > 10) {
+      if (this.distence > 10 && !this.props.disablePullDown) {
         this.initialDirection = 1;
       }
-      if (this.distence < -10) {
+      if (this.distence < -10 && !this.props.disablePullUp) {
         this.initialDirection = -1;
       }
     }
@@ -265,6 +265,12 @@ export default class PullToRefresh extends Component {
     if (this.offset === Infinity) {
       this.offset = -1;
     }
+    if (
+      (this.props.disablePullDown && this.offset > 0) ||
+      (this.props.disablePullUp && this.offset < 0)
+    ) {
+      this.offset = 0;
+    }
 
     const tranrotte =
       this.state.arrowRotate < 180 ? (this.state.arrowRotate += 8) : 180;
@@ -277,6 +283,13 @@ export default class PullToRefresh extends Component {
       loadingtext = this.props.pullUpText;
     }
 
+    // 方向错误时
+    if (
+      (this.initialDirection === -1 && this.distence > 0) ||
+      (this.initialDirection === 1 && this.distence < 0)
+    ) {
+      return;
+    }
     this.setState({
       errMsg: null,
       transfrom: this.state.transfrom + this.offset,

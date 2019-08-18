@@ -14,10 +14,10 @@ export default class Example extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0,
-      isOpen: false,
       list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
       listleft: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      disablePullUpLeft: false,
+      disablePullDownLeft: false,
     };
     this.time1 = null;
     this.time2 = null;
@@ -35,6 +35,7 @@ export default class Example extends Component {
       this.time1 = setTimeout(() => {
         this.setState(
           {
+            disablePullDownLeft: true,
             listleft: ['暂无数据'],
           },
           () => rej('接口请求失败'),
@@ -79,14 +80,14 @@ export default class Example extends Component {
   render() {
     return (
       <div className={`${s.rootbox}`}>
-        <div className={s.clearfix} style={{height: '100%'}}>
+        <div className={s.clearfix} style={{ height: '100%' }}>
           <div className={s.left}>
             <div className={s.pullbox}>
               <PullToRefresh
                 className={s.bg_orange}
                 onPullDown={this.onPullDown}
-                disablePullUp={false}
-                disablePullDown={false}
+                disablePullUp={this.state.disablePullUpLeft}
+                disablePullDown={this.state.disablePullDownLeft}
                 pullDownText="左下拉更新"
                 pullUpText="左上拉更新"
                 onPullUp={this.onPullUp}
