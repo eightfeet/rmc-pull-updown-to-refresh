@@ -80,12 +80,13 @@ export default class PullToRefresh extends Component {
   init = () => {
     setTimeout(() => {
       this.onAddTouchEventListener();
-      this.originTransfrom = this.rootbox.clientHeight * -1;
+      this.pageHeight = this.rootbox.parentElement.clientHeight;
+      this.originTransfrom = this.pageHeight * -1;
       this.setState({
-        rootHeight: this.rootbox.clientHeight,
+        rootHeight: this.pageHeight,
         transfrom: this.originTransfrom,
       });
-    }, 10);
+    }, 100);
   };
 
   stateInit = () => {
@@ -437,7 +438,8 @@ export default class PullToRefresh extends Component {
         ref={el => {
           this.rootbox = el;
         }}
-        className={`${s.rootbox} ${className}`}
+        style={{ height: `${this.pageHeight}px` }}
+        className={`${s.rootbox} ${className || ''}`}
       >
         {debug && <div className={s.debug}>{debug}</div>}
         <div
