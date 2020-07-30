@@ -104,7 +104,7 @@
     "rollup-plugin-uglify": "^4.0.0",
     "rollup-plugin-url": "^1.4.0",
     "sass-loader": "^7.0.3",
-    "standard-version": "^4.2.0",
+    "standard-version": "^8.0.1",
     "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-cli": "^3.0.8",
