@@ -41,7 +41,7 @@ const devConfig = {
     }),
     copy({
       targets: [
-        { src: 'src/rmc-pull-upDown-to-refersh.d.ts', dest: 'lib/rmc-pull-upDown-to-refersh.d.ts' }
+        { src: 'src/rmc-pull-updown-to-refersh.d.ts', dest: 'lib/rmc-pull-updown-to-refersh.d.ts' }
       ]
     })
   ],
@@ -79,6 +79,11 @@ const productionConfig = {
     postcss({
       modules: true,
     }),
+    copy({
+      targets: [
+        { src: 'src/rmc-pull-updown-to-refersh.d.ts', dest: 'lib/rmc-pull-updown-to-refersh.d.ts' }
+      ]
+    })
   ],
   external: ['react'],
 };
