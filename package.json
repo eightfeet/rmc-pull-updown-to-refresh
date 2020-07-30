@@ -6,7 +6,7 @@
   "scripts": {
     "clean:commonjs": "rimraf lib",
     "clean:umd": "rimraf dist",
-    "create-github-release": "conventional-github-releaser -p angular",
+    "create-github-release": "release",
     "build:umd": "rollup -c",
     "build": "npm-run-all clean:* --parallel build:*",
     "format": "eslint src --fix",
