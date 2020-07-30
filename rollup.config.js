@@ -7,6 +7,7 @@ import ignore from 'rollup-plugin-ignore';
 import scss from 'rollup-plugin-scss';
 import url from 'rollup-plugin-url';
 import postcss from 'rollup-plugin-postcss';
+import copy from 'rollup-plugin-copy';
 
 const devConfig = {
   input: 'src/index.js',
@@ -38,6 +39,11 @@ const devConfig = {
     postcss({
       modules: true,
     }),
+    copy({
+      targets: [
+        { src: 'src/rmc-pull-upDown-to-refersh.d.ts', dest: 'lib/rmc-pull-upDown-to-refersh.d.ts' }
+      ]
+    })
   ],
   external: ['prop-types', 'react'],
 };
