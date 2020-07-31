@@ -41,7 +41,7 @@ const devConfig = {
     }),
     copy({
       targets: [
-        { src: 'src/rmc-pull-updown-to-refersh.d.ts', dest: 'lib/rmc-pull-updown-to-refersh.d.ts' }
+        { src: 'src/rmc-pull-updown-to-refersh.d.ts', dest: 'lib' }
       ]
     })
   ],
@@ -81,7 +81,7 @@ const productionConfig = {
     }),
     copy({
       targets: [
-        { src: 'src/rmc-pull-updown-to-refersh.d.ts', dest: 'lib/rmc-pull-updown-to-refersh.d.ts' }
+        { src: 'src/rmc-pull-updown-to-refersh.d.ts', dest: 'lib' }
       ]
     })
   ],
