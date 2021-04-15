@@ -129,6 +129,7 @@ export default class PullToRefresh extends Component {
 
   // 不确定reactOnTouch 事件的兼容性
   onAddTouchEventListener = () => {
+    if (!this.drogbox || !this.listwrap) return;
     this.drogbox.addEventListener('touchstart', this.onTouchStart, false);
     this.drogbox.addEventListener('touchmove', this.onTouchMove, false);
     this.drogbox.addEventListener('touchend', this.onTouchEnd, false);
@@ -137,6 +138,7 @@ export default class PullToRefresh extends Component {
 
   // 取消EventListener
   onRemoveTouchEventListener = () => {
+    if (!this.drogbox || !this.listwrap) return;
     this.drogbox.removeEventListener('touchstart', this.onTouchStart);
     this.drogbox.removeEventListener('touchmove', this.onTouchMove);
     this.drogbox.removeEventListener('touchend', this.onTouchEnd);
