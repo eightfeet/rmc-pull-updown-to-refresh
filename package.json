@@ -1,0 +1,29 @@
+{
+  "name": "typescript-react-test",
+  "version": "1.0.0",
+  "description": "Learning how to create React modules using TypeScript!",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.0.2"
+  },
+  "files": [
+    "/lib"
+  ]
+}
