@@ -1,22 +1,32 @@
 {
   "name": "rmc-pull-updown-to-refresh",
-  "version": "1.0.0",
-  "description": "Learning how to create React modules using TypeScript!",
-  "main": "./build/index.js",
-  "module": "./build/index.esm.js",
-  "types": "./build/index.d.ts",
+  "version": "1.0.20",
+  "description": "react pull to refresh react component",
+  "main": "./disc/index.js",
+  "module": "./disc/index.esm.js",
+  "types": "./disc/index.d.ts",
+  "author": "eightfeet",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c",
-    "buildb": "npm run build:esm && npm run build:cjs",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "build": "rm -rf disc && tsc --emitDeclarationOnly && rollup -c",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eightfeet/rmc-pull-updown-to-refresh.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eightfeet/rmc-pull-updown-to-refresh/issues"
+  },
+  "keywords": [
+    "react",
+    "pull to refresh",
+    "react-component"
+  ],
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",

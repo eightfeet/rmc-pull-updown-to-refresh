@@ -1,10 +1,4 @@
-'use strict';
-
-var React = require('react');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+import React, { Component } from 'react';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -79,13 +73,24 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".rootbox {\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  position: relative;\n}\n\n.drogbox {\n  width: 100%;\n  position: absolute;\n  transition-duration: 0s;\n  left: 0;\n}\n\n.listwrap {\n  overflow: auto;\n  -webkit-overflow-scrolling: touch;\n  position: relative;\n}\n\n.listcontent {\n  box-sizing: border-box;\n  width: 100%;\n}\n\n.drogbar {\n  background-color: #eee;\n  position: relative;\n}\n\n.loading {\n  position: absolute;\n  width: 100%;\n  height: 50px;\n}\n\n.top {\n  bottom: 0;\n}\n\n.buttom {\n  top: 0;\n}\n\n.loadingline {\n  width: 25%;\n  min-width: 100px;\n  height: 20px;\n  margin: 15px auto;\n  text-align: center;\n  color: #888;\n  font-size: 10px;\n  line-height: 20px;\n  position: relative;\n}\n.loadingline span {\n  position: absolute;\n  display: block;\n  left: 0;\n  top: 0;\n  width: 20px;\n  height: 20px;\n  background-repeat: no-repeat;\n  background-position: 0 0;\n  background-size: contain;\n}\n\n.arrowico {\n  text-align: center;\n  font-size: 14px;\n  line-height: 14px;\n}\n\n.loadingico {\n  background-image: url(./loading.svg);\n}\n\n.error, .loadingtext {\n  position: absolute;\n  width: 100%;\n  height: 50px;\n  line-height: 53px;\n  text-align: center;\n  color: #888;\n  font-size: 10px;\n  position: absolute;\n  top: 0;\n}\n\n.arrowbottom {\n  background-image: url(./arrow.svg);\n}\n\n.arrowup {\n  background-image: url(./arrow.svg);\n  transform: rotate(180deg);\n}\n\n.debug {\n  width: 100%;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.4);\n  color: red;\n  position: absolute;\n}";
+var css_248z = ".PullToRefresh_rootbox__Gy9qk {\n  height: 100%;\n  width: 100%;\n  overflow: hidden;\n  position: relative;\n}\n\n.PullToRefresh_drogbox__hntGN {\n  width: 100%;\n  position: absolute;\n  transition-duration: 0s;\n  left: 0;\n}\n\n.PullToRefresh_listwrap__OnOwX {\n  overflow: auto;\n  -webkit-overflow-scrolling: touch;\n  position: relative;\n}\n\n.PullToRefresh_listcontent__3FrYw {\n  box-sizing: border-box;\n  width: 100%;\n}\n\n.PullToRefresh_drogbar__baIiv {\n  background-color: #eee;\n  position: relative;\n}\n\n.PullToRefresh_loading__ivKA3 {\n  position: absolute;\n  width: 100%;\n  height: 50px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: smaller;\n  color: #888;\n}\n\n.PullToRefresh_top__YS33d {\n  bottom: 0;\n}\n\n.PullToRefresh_buttom__K1gr1 {\n  top: 0;\n}\n\n.PullToRefresh_loadingline__4Qp2- {\n  width: 100%;\n  display: flex;\n  height: 20px;\n  align-items: center;\n  font-size: smaller;\n  color: #888;\n  font-size: 10px;\n  line-height: 0;\n  align-items: center;\n  justify-content: center;\n}\n\n.PullToRefresh_arrowico__SaCAe, .PullToRefresh_loadingico__K4szf {\n  height: 1rem;\n  width: 1rem;\n  transform-origin: center;\n}\n.PullToRefresh_arrowico__SaCAe svg, .PullToRefresh_loadingico__K4szf svg {\n  display: block;\n  width: 100%;\n  height: 100%;\n}\n\n.PullToRefresh_error__6QoXX, .PullToRefresh_loadingtext__OtEKs {\n  color: #888;\n}\n\n.PullToRefresh_arrowup__2-Gyh {\n  transform: rotate(180deg);\n  transform-origin: center;\n}\n\n.PullToRefresh_debug__GjXyo {\n  width: 100%;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.4);\n  color: red;\n  position: absolute;\n}";
+var s = {"rootbox":"PullToRefresh_rootbox__Gy9qk","drogbox":"PullToRefresh_drogbox__hntGN","listwrap":"PullToRefresh_listwrap__OnOwX","listcontent":"PullToRefresh_listcontent__3FrYw","drogbar":"PullToRefresh_drogbar__baIiv","loading":"PullToRefresh_loading__ivKA3","top":"PullToRefresh_top__YS33d","buttom":"PullToRefresh_buttom__K1gr1","loadingline":"PullToRefresh_loadingline__4Qp2-","arrowico":"PullToRefresh_arrowico__SaCAe","loadingico":"PullToRefresh_loadingico__K4szf","error":"PullToRefresh_error__6QoXX","loadingtext":"PullToRefresh_loadingtext__OtEKs","arrowup":"PullToRefresh_arrowup__2-Gyh","debug":"PullToRefresh_debug__GjXyo"};
 styleInject(css_248z);
 
-var loading = "<svg class=\"lds-palette-ring\" width=\"80px\"  height=\"80px\"  xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" preserveAspectRatio=\"xMidYMid\"><g transform=\"rotate(150 50 50)\"><path d=\"M80 50 A30 30 0 0 1 59.270509831248425 78.53169548885461\" fill=\"none\" stroke=\"#ffffcb\" stroke-width=\"10\"></path><path d=\"M59.270509831248425 78.53169548885461 A30 30 0 0 1 25.72949016875158 67.6335575687742\" fill=\"none\" stroke=\"#fac090\" stroke-width=\"10\"></path><path d=\"M25.72949016875158 67.6335575687742 A30 30 0 0 1 25.729490168751575 32.366442431225806\" fill=\"none\" stroke=\"#ff7c81\" stroke-width=\"10\"></path><path d=\"M25.729490168751575 32.366442431225806 A30 30 0 0 1 59.27050983124842 21.46830451114539\" fill=\"none\" stroke=\"#c0f6d2\" stroke-width=\"10\"></path><path d=\"M59.27050983124842 21.46830451114539 A30 30 0 0 1 80 49.99999999999999\" fill=\"none\" stroke=\"#dae4bf\" stroke-width=\"10\"></path><animateTransform attributeName=\"transform\" type=\"rotate\" values=\"0 50 50;360 50 50\" times=\"0;1\" dur=\"1\" repeatCount=\"indefinite\"></animateTransform></g></svg>";
-
-var arrow = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\r\n<svg version=\"1.1\" id=\"图层_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\r\n\t viewBox=\"-359 361 80 80\" style=\"enable-background:new -359 361 80 80;\" xml:space=\"preserve\">\r\n<style type=\"text/css\">\r\n\t.st0{fill:#808080;}\r\n</style>\r\n<path class=\"st0\" d=\"M-322.2,373.6c-12.6,1.4-22.7,11.5-24.2,24.1c-1.5,12.8,5.7,24.1,16.6,28.8l0,0c0-2.5-1.2-4.9-3.2-6.4\r\n\tc-6.6-4.9-10.5-13.1-9.3-22.2c1.4-10.6,10.1-19.1,20.7-20.3c14.2-1.6,26.3,9.6,26.3,23.5c0,12.4-9.5,22.5-21.6,23.5v-30l3.4,3.4\r\n\tc1.3,1.3,3.4,0.4,3.4-1.4v-0.1c0-0.5-0.2-1-0.6-1.4l-6.8-6.8c-0.8-0.8-2-0.8-2.8,0l-6.8,6.8c-0.4,0.4-0.6,0.9-0.6,1.4v0.1\r\n\tc0,1.8,2.2,2.7,3.4,1.4l3.4-3.4v30v0.1v3.9c0.7,0,1.3,0.1,2,0.1c15.2,0,27.6-12.4,27.6-27.6C-291.4,384.7-305.5,371.7-322.2,373.6z\"\r\n\t/>\r\n</svg>";
-
+var loading = React.createElement("span", { className: s.loadingico },
+    React.createElement("svg", { className: "lds-palette-ring", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 100 100", preserveAspectRatio: "xMidYMid" },
+        React.createElement("g", { transform: "rotate(150 50 50)" },
+            React.createElement("path", { d: "M80 50a30 30 0 0 1-20.73 28.532", fill: "none", stroke: "#ffffcb", strokeWidth: 10 }),
+            React.createElement("path", { d: "M59.27 78.532a30 30 0 0 1-33.54-10.898", fill: "none", stroke: "#fac090", strokeWidth: 10 }),
+            React.createElement("path", { d: "M25.73 67.634a30 30 0 0 1 0-35.268", fill: "none", stroke: "#ff7c81", strokeWidth: 10 }),
+            React.createElement("path", { d: "M25.73 32.366a30 30 0 0 1 33.54-10.898", fill: "none", stroke: "#c0f6d2", strokeWidth: 10 }),
+            React.createElement("path", { d: "M59.27 21.468A30 30 0 0 1 80 50", fill: "none", stroke: "#dae4bf", strokeWidth: 10 }),
+            React.createElement("animateTransform", { attributeName: "transform", type: "rotate", values: "0 50 50;360 50 50", dur: 1, repeatCount: "indefinite" }))));
+var arrow = React.createElement("span", { className: s.arrowico },
+    React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "-359 361 80 80", xmlSpace: "preserve" },
+        React.createElement("path", { d: "M-322.2 373.6c-12.6 1.4-22.7 11.5-24.2 24.1-1.5 12.8 5.7 24.1 16.6 28.8 0-2.5-1.2-4.9-3.2-6.4-6.6-4.9-10.5-13.1-9.3-22.2 1.4-10.6 10.1-19.1 20.7-20.3 14.2-1.6 26.3 9.6 26.3 23.5 0 12.4-9.5 22.5-21.6 23.5v-30l3.4 3.4c1.3 1.3 3.4.4 3.4-1.4v-.1c0-.5-.2-1-.6-1.4l-6.8-6.8c-.8-.8-2-.8-2.8 0l-6.8 6.8c-.4.4-.6.9-.6 1.4v.1c0 1.8 2.2 2.7 3.4 1.4l3.4-3.4v34c.7 0 1.3.1 2 .1 15.2 0 27.6-12.4 27.6-27.6-.1-16.4-14.2-29.4-30.9-27.5z", style: {
+                fill: "gray",
+            } })));
 var isAndroid4 = /Android 4./i.test(navigator.userAgent);
 var PullToRefresh = /** @class */ (function (_super) {
     __extends(PullToRefresh, _super);
@@ -96,6 +101,10 @@ var PullToRefresh = /** @class */ (function (_super) {
                 var _a, _b;
                 _this.onAddTouchEventListener();
                 _this.pageHeight = (_b = (_a = _this.rootbox) === null || _a === void 0 ? void 0 : _a.parentElement) === null || _b === void 0 ? void 0 : _b.clientHeight;
+                if (!_this.pageHeight) {
+                    console.warn('rmc-pull-updown-to-refresh:The parent HTML element of the component has no height, please set it, otherwise the component will be set as the window height！');
+                    _this.pageHeight = window.innerHeight;
+                }
                 _this.originTransfrom = _this.pageHeight * -1;
                 _this.setState({
                     rootHeight: _this.pageHeight,
@@ -419,68 +428,48 @@ var PullToRefresh = /** @class */ (function (_super) {
             transform: "rotate(".concat(arrowRotate, "deg)"),
             WebkitTransform: "rotate(".concat(arrowRotate, "deg)"),
         };
-        var arrowIcon = {
-            backgroundImage: "url(".concat(this.props.pullIcon, ")"),
+        var loadingstyle = {
+            height: "".concat(rootHeight, "px"),
+            width: '100%',
+            position: 'relative',
         };
-        return (React__default["default"].createElement("div", { ref: function (el) {
+        return (React.createElement("div", { ref: function (el) {
                 _this.rootbox = el;
-            }, style: { height: "".concat(this.pageHeight, "px") }, className: "".concat(css_248z.rootbox, " ").concat(className || '') },
-            debug && React__default["default"].createElement("div", { className: css_248z.debug }, debug),
-            React__default["default"].createElement("div", { ref: function (el) {
+            }, style: { height: "".concat(this.pageHeight, "px") }, className: "".concat(s.rootbox, " ").concat(className || '') },
+            debug && React.createElement("div", { className: s.debug }, debug),
+            React.createElement("div", { ref: function (el) {
                     _this.drogbox = el;
-                }, className: css_248z.drogbox, style: drogboxstyle },
-                React__default["default"].createElement("div", { className: "".concat(css_248z.drogbar), style: {
-                        height: "".concat(rootHeight, "px"),
-                        background: this.props.loadBackground,
-                    } },
-                    loadingtext && (React__default["default"].createElement("div", { className: "".concat(css_248z.top, " ").concat(css_248z.loading) },
-                        React__default["default"].createElement("div", { className: css_248z.loadingline },
-                            showLoading && (React__default["default"].createElement("span", { className: css_248z.loadingico, style: {
-                                    backgroundImage: "url(".concat(this.props.loadIcon, ")"),
-                                } })),
-                            showArrow && (React__default["default"].createElement("span", { className: css_248z.arrowico, style: arrowstyle },
-                                React__default["default"].createElement("span", { className: css_248z.arrowup, style: arrowIcon })))),
-                        React__default["default"].createElement("div", { className: css_248z.loadingtext, style: {
-                                color: this.props.loadTextColor,
-                            } }, loadingtext))),
-                    errMsg && (React__default["default"].createElement("div", { className: "".concat(css_248z.top, " \n                ").concat(css_248z.loading) },
-                        React__default["default"].createElement("div", { className: css_248z.error, style: {
-                                color: this.props.loadTextColor,
-                            } }, errMsg)))),
-                React__default["default"].createElement("div", { ref: function (el) {
+                }, className: s.drogbox, style: drogboxstyle },
+                React.createElement("div", { className: "".concat(s.drogbar, " ").concat(this.props.loadingClassName), style: loadingstyle },
+                    React.createElement("div", { className: "".concat(s.top, " ").concat(s.loading) },
+                        showLoading && this.props.loadIcon,
+                        showArrow && (React.createElement("span", { className: s.arrowico, style: arrowstyle },
+                            React.createElement("div", { className: s.arrowup }, this.props.pullIcon))),
+                        loadingtext,
+                        errMsg)),
+                React.createElement("div", { ref: function (el) {
                         _this.listwrap = el;
-                    }, className: css_248z.listwrap, style: { height: "".concat(rootHeight, "px") } },
-                    React__default["default"].createElement("div", { ref: function (el) {
+                    }, className: s.listwrap, style: { height: "".concat(rootHeight, "px") } },
+                    React.createElement("div", { ref: function (el) {
                             _this.listcontent = el;
-                        }, className: css_248z.bs }, this.props.children)),
-                React__default["default"].createElement("div", { className: "".concat(css_248z.drogbar), style: {
-                        height: "".concat(rootHeight, "px"),
-                        background: this.props.loadBackground,
-                        color: this.props.loadTextColor,
-                    } },
-                    loadingtext && (React__default["default"].createElement("div", { className: "".concat(css_248z.bottom, " ").concat(css_248z.loading) },
-                        React__default["default"].createElement("div", { className: css_248z.loadingline },
-                            showLoading && (React__default["default"].createElement("span", { className: css_248z.loadingico, style: {
-                                    backgroundImage: "url(".concat(this.props.loadIcon, ")"),
-                                } })),
-                            showArrow && (React__default["default"].createElement("span", { className: css_248z.arrowico, style: arrowstyle },
-                                React__default["default"].createElement("span", { className: css_248z.arrowbottom, style: arrowIcon })))),
-                        React__default["default"].createElement("div", { className: css_248z.loadingtext, style: {
-                                color: this.props.loadTextColor,
-                            } }, loadingtext))),
-                    errMsg && (React__default["default"].createElement("div", { className: "".concat(css_248z.bottom, " ").concat(css_248z.loading) },
-                        React__default["default"].createElement("div", { className: css_248z.error }, errMsg)))))));
+                        } }, this.props.children)),
+                React.createElement("div", { className: "".concat(s.drogbar, " ").concat(this.props.loadingClassName), style: loadingstyle },
+                    React.createElement("div", { className: s.loading },
+                        showLoading && this.props.loadIcon,
+                        showArrow && (React.createElement("span", { className: s.arrowico, style: arrowstyle },
+                            React.createElement("span", { className: s.arrowbottom }, this.props.pullIcon))),
+                        loadingtext,
+                        errMsg)))));
     };
     PullToRefresh.defaultProps = {
         pullDownText: '下拉刷新',
         pullUpText: '查看更多',
-        loadBackground: '#eee',
-        loadTextColor: '#888',
+        loadingClassName: '',
         loadIcon: loading,
         pullIcon: arrow, // arrow,
     };
     return PullToRefresh;
-}(React.Component));
+}(Component));
 
-module.exports = PullToRefresh;
-//# sourceMappingURL=index.js.map
+export { PullToRefresh as default };
+//# sourceMappingURL=index.esm.js.map

@@ -31,6 +31,11 @@
 	position: absolute;
 	width: 100%;
 	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: smaller;
+	color: #888;
 }
 
 .top {
@@ -42,56 +47,39 @@
 }
 
 .loadingline {
-	width: 25%;
-	min-width: 100px;
+	width: 100%;
+	display: flex;
 	height: 20px;
-	margin: 15px auto;
-	text-align: center;
+	align-items: center;
+	font-size: smaller;
 	color: #888;
 	font-size: 10px;
-	line-height: 20px;
-	position: relative;
-	span{
-		position: absolute;
+	line-height: 0;
+	align-items: center;
+	justify-content: center;
+}
+
+.arrowico, .loadingico {
+	height: 1rem;
+	width: 1rem;
+	transform-origin: center;
+	svg {
 		display: block;
-		left: 0;
-		top: 0;
-		width: 20px;
-		height: 20px;
-		background-repeat: no-repeat;
-		background-position: 0 0;
-		background-size: contain;
+		width: 100%;
+		height: 100%;
 	}
 }
 
-.arrowico {
-	text-align: center;
-	font-size: 14px;
-	line-height: 14px;
-}
-
-.loadingico {
-	background-image: url(./loading.svg);
-}
-
 .error, .loadingtext {
-	position: absolute;
-	width: 100%;
-	height: 50px;
-	line-height: 53px;
-	text-align: center;
 	color: #888;
-	font-size: 10px;
-	position: absolute;
-	top: 0;
+	
 }
 
 .arrowbottom {
-	background-image: url(./arrow.svg);
 }
 .arrowup {
-	background-image: url(./arrow.svg);
-	transform: rotate(180deg)
+	transform: rotate(180deg);
+	transform-origin: center;
 }
 .debug {
 	width: 100%;

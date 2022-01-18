@@ -1,31 +1,88 @@
 import React, { Component } from 'react';
 import { slope } from './helper';
 import s from './PullToRefresh.scss';
-import loading from './loading.svg';
-import arrow from './arrow.svg';
+
+const loading = <span className={s.loadingico}><svg
+    className="lds-palette-ring"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid"
+>
+    <g transform="rotate(150 50 50)">
+        <path
+            d="M80 50a30 30 0 0 1-20.73 28.532"
+            fill="none"
+            stroke="#ffffcb"
+            strokeWidth={10}
+        />
+        <path
+            d="M59.27 78.532a30 30 0 0 1-33.54-10.898"
+            fill="none"
+            stroke="#fac090"
+            strokeWidth={10}
+        />
+        <path
+            d="M25.73 67.634a30 30 0 0 1 0-35.268"
+            fill="none"
+            stroke="#ff7c81"
+            strokeWidth={10}
+        />
+        <path
+            d="M25.73 32.366a30 30 0 0 1 33.54-10.898"
+            fill="none"
+            stroke="#c0f6d2"
+            strokeWidth={10}
+        />
+        <path
+            d="M59.27 21.468A30 30 0 0 1 80 50"
+            fill="none"
+            stroke="#dae4bf"
+            strokeWidth={10}
+        />
+        <animateTransform
+            attributeName="transform"
+            type="rotate"
+            values="0 50 50;360 50 50"
+            dur={1}
+            repeatCount="indefinite"
+        />
+    </g>
+</svg></span>
+
+const arrow = <span className={s.arrowico}><svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="-359 361 80 80"
+    xmlSpace="preserve"
+>
+    <path
+        d="M-322.2 373.6c-12.6 1.4-22.7 11.5-24.2 24.1-1.5 12.8 5.7 24.1 16.6 28.8 0-2.5-1.2-4.9-3.2-6.4-6.6-4.9-10.5-13.1-9.3-22.2 1.4-10.6 10.1-19.1 20.7-20.3 14.2-1.6 26.3 9.6 26.3 23.5 0 12.4-9.5 22.5-21.6 23.5v-30l3.4 3.4c1.3 1.3 3.4.4 3.4-1.4v-.1c0-.5-.2-1-.6-1.4l-6.8-6.8c-.8-.8-2-.8-2.8 0l-6.8 6.8c-.4.4-.6.9-.6 1.4v.1c0 1.8 2.2 2.7 3.4 1.4l3.4-3.4v34c.7 0 1.3.1 2 .1 15.2 0 27.6-12.4 27.6-27.6-.1-16.4-14.2-29.4-30.9-27.5z"
+        style={{
+            fill: "gray",
+        }}
+    />
+</svg></span>
 
 const isAndroid4 = /Android 4./i.test(navigator.userAgent);
 
 interface Props {
     disablePullDown?: boolean;
     disablePullUp?: boolean;
-    pullDownText?: string;
-    pullUpText?: string;
-    onPullUp: any;
-    onPullDown: any;
+    pullDownText?: React.ReactNode;
+    pullUpText?: React.ReactNode;
+    onPullUp: () => Promise<any>;
+    onPullDown: () => Promise<any>;
     className: string;
     children: React.ReactNode;
-    loadBackground?: string;
-    loadTextColor?: string;
-    loadIcon?: string;
-    pullIcon?: string;
+    loadingClassName?: string;
+    loadIcon?: React.ReactNode;
+    pullIcon?: React.ReactNode;
 }
 
 interface State {
     debug?: string | null;
     rootHeight: number;
     transfrom: number | null;
-    loadingtext?: string | null;
+    loadingtext?: React.ReactNode;
     showLoading: boolean;
     showArrow: boolean;
     arrowRotate: number;
@@ -36,8 +93,7 @@ export default class PullToRefresh extends Component<Props, State> {
     static defaultProps = {
         pullDownText: '下拉刷新',
         pullUpText: '查看更多',
-        loadBackground: '#eee',
-        loadTextColor: '#888',
+        loadingClassName: '',
         loadIcon: loading,
         pullIcon: arrow, // arrow,
     };
@@ -111,6 +167,10 @@ export default class PullToRefresh extends Component<Props, State> {
         setTimeout(() => {
             this.onAddTouchEventListener();
             this.pageHeight = this.rootbox?.parentElement?.clientHeight;
+            if (!this.pageHeight) {
+                console.warn('rmc-pull-updown-to-refresh:The parent HTML element of the component has no height, please set it, otherwise the component will be set as the window height！')
+                this.pageHeight = window.innerHeight;
+            }
             this.originTransfrom = this.pageHeight * -1;
             this.setState({
                 rootHeight: this.pageHeight,
@@ -232,7 +292,7 @@ export default class PullToRefresh extends Component<Props, State> {
         if (
             this.listwrap &&
             this.listwrap.scrollTop + this.listwrap.clientHeight ===
-                this.listwrap.scrollHeight &&
+            this.listwrap.scrollHeight &&
             this.endPos - this.startPos < 0 &&
             event.cancelable
         ) {
@@ -309,8 +369,8 @@ export default class PullToRefresh extends Component<Props, State> {
             this.offset = 0;
         }
 
-        let {arrowRotate} = this.state;
-        
+        let { arrowRotate } = this.state;
+
         const tranrotte =
             arrowRotate < 180 ? (arrowRotate += 8) : 180;
 
@@ -467,9 +527,11 @@ export default class PullToRefresh extends Component<Props, State> {
             WebkitTransform: `rotate(${arrowRotate}deg)`,
         };
 
-        const arrowIcon = {
-            backgroundImage: `url(${this.props.pullIcon})`,
-        };
+        const loadingstyle: React.CSSProperties = {
+            height: `${rootHeight}px`,
+            width: '100%',
+            position: 'relative',
+        }
 
         return (
             <div
@@ -488,60 +550,24 @@ export default class PullToRefresh extends Component<Props, State> {
                     style={drogboxstyle}
                 >
                     <div
-                        className={`${s.drogbar}`}
-                        style={{
-                            height: `${rootHeight}px`,
-                            background: this.props.loadBackground,
-                        }}
+                        className={`${s.drogbar} ${this.props.loadingClassName}`}
+                        style={loadingstyle}
                     >
-                        {loadingtext && (
-                            <div className={`${s.top} ${s.loading}`}>
-                                <div className={s.loadingline}>
-                                    {showLoading && (
-                                        <span
-                                            className={s.loadingico}
-                                            style={{
-                                                backgroundImage: `url(${this.props.loadIcon})`,
-                                            }}
-                                        />
-                                    )}
-                                    {showArrow && (
-                                        <span
-                                            className={s.arrowico}
-                                            style={arrowstyle}
-                                        >
-                                            <span
-                                                className={s.arrowup}
-                                                style={arrowIcon}
-                                            />
-                                        </span>
-                                    )}
-                                </div>
-                                <div
-                                    className={s.loadingtext}
-                                    style={{
-                                        color: this.props.loadTextColor,
-                                    }}
+                        <div className={`${s.top} ${s.loading}`}>
+                            {showLoading && this.props.loadIcon}
+                            {showArrow && (
+                                <span
+                                    className={s.arrowico}
+                                    style={arrowstyle}
                                 >
-                                    {loadingtext}
-                                </div>
-                            </div>
-                        )}
-                        {errMsg && (
-                            <div
-                                className={`${s.top} 
-                ${s.loading}`}
-                            >
-                                <div
-                                    className={s.error}
-                                    style={{
-                                        color: this.props.loadTextColor,
-                                    }}
-                                >
-                                    {errMsg}
-                                </div>
-                            </div>
-                        )}
+                                    <div
+                                        className={s.arrowup}
+                                    >{this.props.pullIcon}</div>
+                                </span>
+                            )}
+                            {loadingtext}
+                            {errMsg}
+                        </div>
                     </div>
                     <div
                         ref={(el) => {
@@ -554,57 +580,29 @@ export default class PullToRefresh extends Component<Props, State> {
                             ref={(el) => {
                                 this.listcontent = el;
                             }}
-                            className={s.bs}
                         >
                             {this.props.children}
                         </div>
                     </div>
                     <div
-                        className={`${s.drogbar}`}
-                        style={{
-                            height: `${rootHeight}px`,
-                            background: this.props.loadBackground,
-                            color: this.props.loadTextColor,
-                        }}
+                        className={`${s.drogbar} ${this.props.loadingClassName}`}
+                        style={loadingstyle}
                     >
-                        {loadingtext && (
-                            <div className={`${s.bottom} ${s.loading}`}>
-                                <div className={s.loadingline}>
-                                    {showLoading && (
-                                        <span
-                                            className={s.loadingico}
-                                            style={{
-                                                backgroundImage: `url(${this.props.loadIcon})`,
-                                            }}
-                                        />
-                                    )}
-                                    {showArrow && (
-                                        <span
-                                            className={s.arrowico}
-                                            style={arrowstyle}
-                                        >
-                                            <span
-                                                className={s.arrowbottom}
-                                                style={arrowIcon}
-                                            />
-                                        </span>
-                                    )}
-                                </div>
-                                <div
-                                    className={s.loadingtext}
-                                    style={{
-                                        color: this.props.loadTextColor,
-                                    }}
+                        <div className={s.loading}>
+                            {showLoading && this.props.loadIcon}
+                            {showArrow && (
+                                <span
+                                    className={s.arrowico}
+                                    style={arrowstyle}
                                 >
-                                    {loadingtext}
-                                </div>
-                            </div>
-                        )}
-                        {errMsg && (
-                            <div className={`${s.bottom} ${s.loading}`}>
-                                <div className={s.error}>{errMsg}</div>
-                            </div>
-                        )}
+                                    <span
+                                        className={s.arrowbottom}
+                                    >{this.props.pullIcon}</span>
+                                </span>
+                            )}
+                            {loadingtext}
+                            {errMsg}
+                        </div>
                     </div>
                 </div>
             </div>
