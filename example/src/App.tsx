@@ -23,12 +23,12 @@ function App() {
                 const list = tag === '左边' ? listA : listB;
                 const fn = tag === '左边' ? setListA : setListB;
                 setTimeout(() => {
-                    if (list?.length < 20) {
+                    if (list?.length < 30) {
                         fn((data) => {
                             const newData = [...data];
                             for (
                                 let index = list.length;
-                                index < list.length + 10;
+                                index < list.length + 15;
                                 index++
                             ) {
                                 newData.push(index);
