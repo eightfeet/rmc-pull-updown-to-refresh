@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "22222/static/css/main.10841590.css",
-    "main.js": "22222/static/js/main.32aeaa79.js",
-    "static/js/787.280bb290.chunk.js": "22222/static/js/787.280bb290.chunk.js",
-    "index.html": "22222/index.html",
-    "main.10841590.css.map": "22222/static/css/main.10841590.css.map",
-    "main.32aeaa79.js.map": "22222/static/js/main.32aeaa79.js.map",
-    "787.280bb290.chunk.js.map": "22222/static/js/787.280bb290.chunk.js.map"
+    "main.css": "https://www.eightfeet.cn/rmc-pull-updown-to-refresh/static/css/main.10841590.css",
+    "main.js": "https://www.eightfeet.cn/rmc-pull-updown-to-refresh/static/js/main.66ffc164.js",
+    "static/js/787.280bb290.chunk.js": "https://www.eightfeet.cn/rmc-pull-updown-to-refresh/static/js/787.280bb290.chunk.js",
+    "index.html": "https://www.eightfeet.cn/rmc-pull-updown-to-refresh/index.html",
+    "main.10841590.css.map": "https://www.eightfeet.cn/rmc-pull-updown-to-refresh/static/css/main.10841590.css.map",
+    "main.66ffc164.js.map": "https://www.eightfeet.cn/rmc-pull-updown-to-refresh/static/js/main.66ffc164.js.map",
+    "787.280bb290.chunk.js.map": "https://www.eightfeet.cn/rmc-pull-updown-to-refresh/static/js/787.280bb290.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.10841590.css",
-    "static/js/main.32aeaa79.js"
+    "static/js/main.66ffc164.js"
   ]
 }
