@@ -17,8 +17,6 @@ yarn
 yarn add rmc-pull-updown-to-refresh
 ```
 
-# Server
-
 ##  [Example repo](https://github.com/eightfeet/rmc-pull-updown-to-refresh/tree/master/example)
 ```ssh
 git clone https://github.com/eightfeet/rmc-pull-updown-to-refresh.github
