@@ -13,14 +13,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "rmc-pull-updown-to-refresh": "./..",
     "typescript": "^4.5.4",
-    "web-vitals": "^2.1.3",
-    "rmc-pull-updown-to-refresh": "./.."
+    "web-vitals": "^2.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "deploy": "npm run build && gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,5 +41,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3",
+    "mini-css-extract-plugin": "2.4.5"
+  },
+  "resolutions": {
+    "mini-css-extract-plugin": "2.4.5"
   }
 }
