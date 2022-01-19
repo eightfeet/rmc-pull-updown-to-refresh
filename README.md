@@ -122,7 +122,7 @@ interface Props {
 ```
 
 # ⚠️ 注意
-rmc-pull-updown-to-refresh  根据父级高度来定义滚动视窗高度，组件初始化前请定义好父级高度
+rmc-pull-updown-to-refresh  根据父级高度来定义滚动视窗高度，组件初始化前请定义好父级HTML元素高度，如果获取不到父级HTML元素高度，滚动视窗高度高度将被设置为浏览器窗口高度
 
 
 # 事件流 Event flow
