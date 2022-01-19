@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import PullToRefresh from 'rmc-pull-updown-to-refresh';
 
 function App() {
-    const [listA, setListA] = useState<number[]>([0,1,2,3,4,5]);
+    const [listA, setListA] = useState<number[]>([0,1,2,3,4]);
     const [listB, setListB] = useState<number[]>([0,1,2,3,4,5]);
 
     const onPullDown = useCallback(
@@ -57,8 +57,9 @@ function App() {
                     loadingText={<div className="pulldowntext">左-等待中</div>}
                 >
                     {listA.map((item) => (
-                        <div className="item">{item}</div>
+                        <div className="item" key={item}>{item}</div>
                     ))}
+                    {listA.length ? null : <div className='none'>找不到数据</div>}
                 </PullToRefresh>
                 <PullToRefresh
                     className="listb"
@@ -73,6 +74,7 @@ function App() {
                     {listB.map((item) => (
                         <div className="item" key={item}>{item}</div>
                     ))}
+                    {listB.length ? null : <div className='none'>找不到数据</div>}
                 </PullToRefresh>
             </div>
         </div>
