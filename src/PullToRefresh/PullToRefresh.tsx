@@ -56,9 +56,7 @@ const arrow = <span className={s.arrowico}><svg
 >
     <path
         d="M-322.2 373.6c-12.6 1.4-22.7 11.5-24.2 24.1-1.5 12.8 5.7 24.1 16.6 28.8 0-2.5-1.2-4.9-3.2-6.4-6.6-4.9-10.5-13.1-9.3-22.2 1.4-10.6 10.1-19.1 20.7-20.3 14.2-1.6 26.3 9.6 26.3 23.5 0 12.4-9.5 22.5-21.6 23.5v-30l3.4 3.4c1.3 1.3 3.4.4 3.4-1.4v-.1c0-.5-.2-1-.6-1.4l-6.8-6.8c-.8-.8-2-.8-2.8 0l-6.8 6.8c-.4.4-.6.9-.6 1.4v.1c0 1.8 2.2 2.7 3.4 1.4l3.4-3.4v34c.7 0 1.3.1 2 .1 15.2 0 27.6-12.4 27.6-27.6-.1-16.4-14.2-29.4-30.9-27.5z"
-        style={{
-            fill: "gray",
-        }}
+        fill="currentColor"
     />
 </svg></span>
 
@@ -75,6 +73,7 @@ interface Props {
     children: React.ReactNode;
     loadingClassName?: string;
     loadIcon?: React.ReactNode;
+    loadingText?: React.ReactNode;
     pullIcon?: React.ReactNode;
 }
 
@@ -93,6 +92,7 @@ export default class PullToRefresh extends Component<Props, State> {
     static defaultProps = {
         pullDownText: '下拉刷新',
         pullUpText: '查看更多',
+        loadingText: '加载中',
         loadingClassName: '',
         loadIcon: loading,
         pullIcon: arrow, // arrow,
@@ -434,7 +434,7 @@ export default class PullToRefresh extends Component<Props, State> {
         this.setState(
             {
                 transfrom: transf,
-                loadingtext: '加载中',
+                loadingtext: this.props.loadingText,
                 showLoading: true,
                 showArrow: false,
                 arrowRotate: 0,

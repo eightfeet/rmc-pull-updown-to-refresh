@@ -25,6 +25,8 @@
 .drogbar {
 	background-color: #eee;
 	position: relative;
+	font-size: smaller;
+	color: #888;
 }
 
 .loading {
@@ -34,8 +36,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: smaller;
-	color: #888;
 }
 
 .top {
@@ -88,3 +88,4 @@
 	color: red;
 	position: absolute;
 }
+

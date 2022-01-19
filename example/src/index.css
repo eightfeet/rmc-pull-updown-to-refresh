@@ -12,6 +12,33 @@ code {
     monospace;
 }
 
-.bgtest {
-  background-color: #f00 !important;
+.background {
+  background-color: rgb(131, 131, 131) !important;
+  color: #fff !important;
+}
+
+.pulldowntext {
+  color: #fff;
+}
+
+.item {
+	border-bottom: 1px solid rgb(255, 255, 255);
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list {
+  background: #48aff0;
+  flex: auto;
+}
+.listb {
+  background: #6f48f0;
+  flex: auto;
+}
+
+.wrap {
+  display: flex;
+
 }
