@@ -67,10 +67,10 @@ interface Props {
     disablePullUp?: boolean;
     pullDownText?: React.ReactNode;
     pullUpText?: React.ReactNode;
-    onPullUp: () => Promise<any>;
-    onPullDown: () => Promise<any>;
-    className: string;
-    children: React.ReactNode;
+    onPullUp?: () => Promise<any>;
+    onPullDown?: () => Promise<any>;
+    className?: string;
+    children?: React.ReactNode;
     loadingClassName?: string;
     loadIcon?: React.ReactNode;
     loadingText?: React.ReactNode;

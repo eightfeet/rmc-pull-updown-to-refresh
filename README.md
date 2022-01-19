@@ -108,9 +108,9 @@ interface Props {
     disablePullUp?: boolean; // 禁止上拉
     pullDownText?: React.ReactNode; // 下拉时展示的文本
     pullUpText?: React.ReactNode; // 上拉时展示的文本
-    onPullUp: () => Promise<any>; // 上拉方法，要求返回promise，reject返回错误信息
-    onPullDown: () => Promise<any>; // 下拉方法，要求返回promise，reject返回错误信息
-    className: string; //样式
+    onPullUp?: () => Promise<any>; // 上拉方法，要求返回promise，reject返回错误信息
+    onPullDown?: () => Promise<any>; // 下拉方法，要求返回promise，reject返回错误信息
+    className?: string; //样式
     children: React.ReactNode; 
     loadingClassName?: string; // 加载条样式
     loadIcon?: React.ReactNode; // 加载图标
@@ -118,6 +118,7 @@ interface Props {
     pullIcon?: React.ReactNode; // 拉动时方向图标
 }
 ```
+
 
 # ⚠️ 注意
 rmc-pull-updown-to-refresh  根据父级高度来定义滚动视窗高度，组件初始化前请定义好父级HTML元素高度，如果获取不到父级HTML元素高度，滚动视窗高度高度将被设置为浏览器窗口高度
