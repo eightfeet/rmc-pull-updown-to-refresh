@@ -13,8 +13,20 @@ yarn
 ```sh
 yarn add rmc-pull-updown-to-refresh
 ```
-##  Basic Example
 
+##  Example
+```ssh
+git clone https://github.com/eightfeet/rmc-pull-updown-to-refresh.github
+cd rmc-pull-updown-to-refresh
+npm install
+npm run build
+
+cd example npm install
+npm run start
+
+```
+
+##  Basic Example
 ```js
     import React, { Component } from 'react';
     import PullToRefresh from 'rmc-pull-updown-to-refresh';
