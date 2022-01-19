@@ -1,8 +1,0 @@
-npm-debug.log
-.DS_Store
-src
-package-lock
-rollup.config.js
-node_modules
-example
-tsconfig.json
