@@ -4,7 +4,7 @@ An accessible and easy component for ReactJS
 
 ### 简单易用的react拖拉翻页组件 
 
-灵活自由，高度可配置， 支持局部滚动。
+8kb大小, 灵活自由，高度可配置， 支持局部滚动。
 
 # Installing
 
