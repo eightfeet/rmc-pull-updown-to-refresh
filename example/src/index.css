@@ -17,6 +17,11 @@ code {
   color: #fff !important;
 }
 
+.background-a {
+  background-color: rgb(0, 174, 255) !important;
+  color: #fff !important;
+}
+
 .pulldowntext {
   color: #fff;
 }
@@ -30,7 +35,7 @@ code {
 }
 
 .list {
-  background: #48aff0;
+  background: #8a97a0;
   flex: auto;
 }
 .listb {
@@ -48,4 +53,16 @@ code {
   font-size: smaller;
   text-align: center;
   padding-top: 3rem;
+}
+
+.effectloading {
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+}
+
+.effectloading svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }

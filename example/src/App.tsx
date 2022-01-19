@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import PullToRefresh from 'rmc-pull-updown-to-refresh';
+import EffectLoading from './EffectLoading';
 
 function App() {
     const [listA, setListA] = useState<number[]>([0,1,2,3,4]);
@@ -54,7 +55,8 @@ function App() {
                     pullDownText={
                         <div className="pulldowntext">左-下拉刷新</div>
                     }
-                    loadingText={<div className="pulldowntext">左-等待中</div>}
+                    loadingText={null}
+                    loadIcon={<div className='effectloading'><EffectLoading /></div>}
                 >
                     {listA.map((item) => (
                         <div className="item" key={item}>{item}</div>
@@ -69,7 +71,7 @@ function App() {
                     pullDownText={
                         <div className="pulldowntext">右-下拉刷新</div>
                     }
-                    loadingText={<div className="pulldowntext">右-等待中</div>}
+                    loadingText={'请稍后'}
                 >
                     {listB.map((item) => (
                         <div className="item" key={item}>{item}</div>
