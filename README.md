@@ -1,10 +1,13 @@
-##  rmc-pull-updown-to-refresh  
+# rmc-pull-updown-to-refresh  
 
 An accessible and easy component for ReactJS
 
 ### 简单易用的react拖拉翻页组件 
 
-##  Installing
+灵活自由，高度可配置， 支持局部滚动。
+
+# Installing
+
 npm  
 ```sh
 npm i rmc-pull-updown-to-refresh -S
@@ -14,7 +17,9 @@ yarn
 yarn add rmc-pull-updown-to-refresh
 ```
 
-##  Example
+# Server
+
+##  [Example repo](https://github.com/eightfeet/rmc-pull-updown-to-refresh/tree/master/example)
 ```ssh
 git clone https://github.com/eightfeet/rmc-pull-updown-to-refresh.github
 cd rmc-pull-updown-to-refresh
@@ -26,138 +31,107 @@ npm run start
 
 ```
 
-##  Basic Example
 ```js
-    import React, { Component } from 'react';
-    import PullToRefresh from 'rmc-pull-updown-to-refresh';
+import React, { useCallback, useState } from 'react';
+import PullToRefresh from 'rmc-pull-updown-to-refresh';
 
-    export default class YouComponet extends Component {
-        onPullDown = () =>
-            new Promise((res, rej) => {
-            window.clearTimeout(this.time1);
-            this.time1 = setTimeout(() => {
-                this.setState(
-                {
-                    listleft: ['暂无数据'],
-                },
-                () => rej('接口请求失败'),
-                );
-            }, 3000);
-            });
+function App() {
+    const [list, setList] = useState<number[]>([1,2,3,4,5]);
 
-        onPullUp = () =>
+    const onPullDown = useCallback(
+        () =>
             new Promise((res, rej) => {
-            window.clearTimeout(this.time2);
-            this.time2 = setTimeout(() => {
-                rej('没有更多了！');
-            }, 3000);
-            });
-        ...
-        render () {
-            return (
-                <div>
-                    <PullToRefresh
-                        className={s.bg_orange}
-                        onPullDown={this.onPullDown}
-                        disablePullUp={false}
-                        disablePullDown={false}
-                        pullDownText="左下拉更新"
-                        pullUpText="左上拉更新"
-                        onPullUp={this.onPullUp}
-                        loadIcon={loadheart}
-                        pullIcon={rocket}
-                        loadingClassName={}
-                    >
-                        <ul>
-                            <li>...youlist</li>
-                            <li>...youlist</li>
-                            <li>...youlist</li>
-                            ...
-                        </ul>
-                    </PullToRefresh>
-        }
-    }
+                setTimeout(() => {
+                    rej('暂无数据');
+                    setList([]);
+                }, 3000);
+            }),
+        []
+    );
+
+    const onPullUp = useCallback(
+        () =>
+            new Promise((res, rej) => {
+                setTimeout(() => {
+                    if (list?.length < 30) {
+                        setList((data) => {
+                            const newData = [...data];
+                            for (
+                                let index = list.length;
+                                index < list.length + 15;
+                                index++
+                            ) {
+                                newData.push(index);
+                            }
+                            return newData;
+                        });
+                        res(null);
+                    } else {
+                        rej('别扯了!这是底线');
+                    }
+                }, 3000);
+            }),
+        [list]
+    );
+
+    return (
+        <div className="App">
+            <div className="wrap">
+                <PullToRefresh
+                    className="list"
+                    loadingClassName="background"
+                    onPullUp={onPullUp}
+                    onPullDown={onPullDown}
+                    pullDownText={
+                        <div className="pulldowntext">下拉刷新</div>
+                    }
+                    loadingText={'请稍候'}
+                >
+                    {list.map((item) => (
+                        <div className="item" key={item}>{item}</div>
+                    ))}
+                    {list.length ? null : <div className='none'>找不到数据</div>}
+                </PullToRefresh>
+            </div>
+        </div>
+    );
+}
+
+export default App;
+
 
 ```
 
-##  API
+# Api
 
 ```typescript
-    interface Props {
-        disablePullDown?: boolean;
-        disablePullUp?: boolean;
-        pullDownText?: React.ReactNode;
-        pullUpText?: React.ReactNode;
-        onPullUp: () => Promise<any>;
-        onPullDown: () => Promise<any>;
-        className: string;
-        children: React.ReactNode;
-        loadingClassName?: string;
-        loadIcon?: React.ReactNode;
-        pullIcon?: React.ReactNode;
-    }
-    interface State {
-        debug?: string | null;
-        rootHeight: number;
-        transfrom: number | null;
-        loadingtext?: React.ReactNode;
-        showLoading: boolean;
-        showArrow: boolean;
-        arrowRotate: number;
-        errMsg: string | null;
-    }
-    export default class PullToRefresh extends Component<Props, State> {
-        static defaultProps: {
-            pullDownText: string;
-            pullUpText: string;
-            loadingClassName: string;
-            loadIcon: JSX.Element;
-            pullIcon: JSX.Element;
-        };
-        rootbox: HTMLDivElement | null;
-        drogbox: HTMLDivElement | null;
-        listwrap: HTMLDivElement | null;
-        listcontent: HTMLDivElement | null;
-        offset: number;
-        startPos: number;
-        endPos: number;
-        startXPos: number;
-        endXPos: number;
-        originTransfrom: number;
-        isTouch: boolean;
-        isScroll: boolean;
-        minDistance: number;
-        step: number;
-        timererror: number | undefined;
-        delaytimer: number | undefined;
-        isStatusLoading: boolean;
-        distence: number;
-        initialDirection: number | null;
-        pageHeight: any;
-        constructor(props: Props);
-        componentDidMount(): void;
-        componentWillUnmount(): void;
-        init: () => void;
-        stateInit: () => void;
-        isOnScroll: () => boolean;
-        onScroll: () => void;
-        onAddTouchEventListener: () => void;
-        onRemoveTouchEventListener: () => void;
-        onTouchStart: (event: any) => void;
-        onTouchMove: (event: any) => void;
-        onTouchEnd: (event: any) => boolean;
-        handleAction: (direction: number) => Promise<string | void>;
-        render(): JSX.Element;
-    }
+interface Props {
+    disablePullDown?: boolean; // 禁止下拉
+    disablePullUp?: boolean; // 禁止上拉
+    pullDownText?: React.ReactNode; // 下拉时展示的文本
+    pullUpText?: React.ReactNode; // 上拉时展示的文本
+    onPullUp: () => Promise<any>; // 上拉方法，要求返回promise，reject返回错误信息
+    onPullDown: () => Promise<any>; // 下拉方法，要求返回promise，reject返回错误信息
+    className: string; //样式
+    children: React.ReactNode; 
+    loadingClassName?: string; // 加载条样式
+    loadIcon?: React.ReactNode; // 加载图标
+    loadingText?: React.ReactNode; // 加载文本
+    pullIcon?: React.ReactNode; // 拉动时方向图标
+}
 ```
 
-## Event flow
-<img src="https://github.com/eightfeet/rmc-pull-updown-to-refresh/blob/master/src/components/PullToRefresh/flow.png?raw=true" width="500" />
+# ⚠️ 注意
+rmc-pull-updown-to-refresh  根据父级高度来定义滚动视窗高度，组件初始化前请定义好父级高度
+
+
+# 事件流 Event flow
+<img src="https://www.eightfeet.cn/rmc-pull-updown-to-refresh/flow.png" width="500" />
 
 ## Demo
 <div align="center">
-    <img src="https://github.com/eightfeet/rmc-pull-updown-to-refresh/blob/master/src/components/PullToRefresh/example.gif?raw=true" width="300" />
+    <img src="https://www.eightfeet.cn/rmc-pull-updown-to-refresh/example.gif" width="300" />
     <br /> 
     手机扫码体验   
-    <br />   <img src="https://github.com/eightfeet/rmc-pull-updown-to-refresh/blob/master/src/components/PullToRefresh/demo.png?raw=true" width="100" />  
+    <br />   <img src="https://www.eightfeet.cn/rmc-pull-updown-to-refresh/demo.png" width="100" />  
 </div>
