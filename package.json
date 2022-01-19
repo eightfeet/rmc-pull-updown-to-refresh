@@ -1,6 +1,6 @@
 {
   "name": "rmc-pull-updown-to-refresh",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "react pull to refresh react component",
   "main": "./disc/index.js",
   "module": "./disc/index.esm.js",
@@ -45,7 +45,7 @@
     "typescript": "^4.0.2"
   },
   "files": [
-    "/lib"
+    "/disc"
   ],
   "dependencies": {
     "typescript-plugin-css-modules": "^3.4.0"
